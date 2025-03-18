@@ -1,0 +1,80 @@
+@startuml
+skinparam classAttributeIconSize 0
+class EmployeeAdaptor{
++ EmployeeAdaptor(nome : String, apelido : String, codigo : int, salario : double)
++ getName() : String
++ getId() : long
++ getSalary() : double
+}
+EmployeeAdaptor ..|> EmployeeAdaptorInterface
+EmployeeAdaptor --|> Empregado
+class MainAdaptor{
++ {static} main(args : String[]) : void
+}
+class Empregado{
+- nome : String
+- apelido : String
+- codigo : int
+- salario : double
++ Empregado(nome : String, apelido : String, codigo : int, salario : double)
++ apelido() : String
++ nome() : String
++ codigo() : int
++ salario() : double
+}
+class Registos{
+- empregados : ArrayList<Empregado>
++ Registos()
++ insere(emp : Empregado) : void
++ remove(codigo : int) : void
++ isEmpregado(codigo : int) : boolean
++ listaDeEmpregados() : List<Empregado>
+}
+class Employee{
+- name : String
+- emp_num : long
+- salary : double
++ Employee(name : String, emp_num : long, salary : double)
++ getName() : String
++ getEmpNum() : long
++ getSalary() : double
+}
+class Database{
+- employees : Vector<Employee>
++ Database()
++ addEmployee(employee : Employee) : boolean
++ deleteEmployee(emp_num : long) : void
++ getAllEmployees() : Employee[]
+}
+class Main{
++ {static} main(args : String[]) : void
+}
+class DatabaseAdaptor{
+- employees : List<Employee>
++ novoEmployee(empregado : Empregado) : void
++ removerEmployee(id : long) : void
++ getEmployees() : ArrayList<Employee>
++ isEmployee(id : long) : Boolean
+}
+DatabaseAdaptor ..|> DatabaseAdaptorInterface
+DatabaseAdaptor --|> Registos
+interface DatabaseAdaptorInterface{
++ novoEmployee(employee : Empregado) : void
++ removerEmployee(id : long) : void
++ getEmployees() : ArrayList<Employee>
++ isEmployee(id : long) : Boolean
+}
+interface EmployeeAdaptorInterface{
++ getName() : String
++ getId() : long
++ getSalary() : double
+}
+Employee -- DatabaseAdaptor
+Main --> Empregado
+Main --> Registos
+Main --> Employee
+Main --> Database
+MainAdaptor --> EmployeeAdaptorInterface
+MainAdaptor --> DatabaseAdaptorInterface
+
+@enduml

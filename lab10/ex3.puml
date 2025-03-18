@@ -1,0 +1,38 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Invoker{
+- undoStack : Stack<Command<T>>
++ Invoker()
++ execute(command : Command<T>) : void
++ undo() : void
+}
+class Command{
+# target : Collection<T>
+# element : T
++ Command(target : Collection<T>, element : T)
++ {abstract} execute() : boolean
++ {abstract} undo() : boolean
+}
+class RemoveCommand{
++ RemoveCommand(target : Collection<T>, element : T)
++ execute() : boolean
++ undo() : boolean
+}
+RemoveCommand --|> Command
+class Main{
++ {static} main(args : String[]) : void
+}
+class AddCommand{
++ AddCommand(target : ArrayList<T>, element : T)
++ execute() : boolean
++ undo() : boolean
+}
+AddCommand --|> Command
+Invoker --> Command
+AddCommand --> Collection
+RemoveCommand --> Collection
+Main --> Invoker
+Main --> Collection
+Main ..> AddCommand
+Main ..> RemoveCommand
+@enduml

@@ -1,0 +1,70 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Disponivel{
++ regista(livro : Livro) : void
++ requesita(livro : Livro) : void
++ devolve(livro : Livro) : void
++ reserva(livro : Livro) : void
++ cancelaReserva(livro : Livro) : void
++ toString() : String
+- printError() : void
+}
+Disponivel ..|> LivroState
+class Emprestado{
++ regista(livro : Livro) : void
++ requesita(livro : Livro) : void
++ devolve(livro : Livro) : void
++ reserva(livro : Livro) : void
++ cancelaReserva(livro : Livro) : void
++ toString() : String
+- printError() : void
+}
+Emprestado ..|> LivroState
+class Livro{
+- state : LivroState
+- titulo : String
+- autor : String
++ Livro(titulo : String, autor : String)
++ regista() : void
++ requesita() : void
++ devolve() : void
++ reserva() : void
++ cancelaReserva() : void
++ setState(state : LivroState) : void
++ toString() : String
+}
+class Inventario{
++ regista(livro : Livro) : void
++ requesita(livro : Livro) : void
++ devolve(livro : Livro) : void
++ reserva(livro : Livro) : void
++ cancelaReserva(livro : Livro) : void
++ toString() : String
+- printError() : void
+}
+Inventario ..|> LivroState
+class Reservado{
++ regista(livro : Livro) : void
++ requesita(livro : Livro) : void
++ devolve(livro : Livro) : void
++ reserva(livro : Livro) : void
++ cancelaReserva(livro : Livro) : void
++ toString() : String
+- printError() : void
+}
+Reservado ..|> LivroState
+class Library{
+- {static} books : List<Livro>
++ {static} main(args : String[]) : void
++ {static} printBooks() : void
+}
+Livro--"- state" LivroState
+interface LivroState{
++ regista(livro : Livro) : void
++ requesita(livro : Livro) : void
++ devolve(livro : Livro) : void
++ reserva(livro : Livro) : void
++ cancelaReserva(livro : Livro) : void
+}
+Library ..> Livro
+@enduml

@@ -1,0 +1,88 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Movie{
+- title : String
+- year : int
+- director : Person
+- writer : Person
+- series : String
+- cast : List<Person>
+- locations : List<Place>
+- languages : List<String>
+- genres : List<String>
+- isTelevision : boolean
+- isNetflix : boolean
+- isIndependent : boolean
++ Movie(movieTitle : String, movieYear : int, movieDirector : Person, movieWriter : Person, movieSeries : String, movieCast : List<Person>, movieLocations : List<Place>, movieLanguages : List<String>, movieGenres : List<String>, television : boolean, netflix : boolean, independent : boolean)
++ {static} Builder() : MovieBuilder
++ toString() : String
+}
+class Person{
+- firstName : String
+- lastName : String
++ Person(firstName : String, lastName : String)
++ getFirstName() : String
++ getLastName() : String
++ getName() : String
++ toString() : String
+}
+class Place{
+- name : String
+- city : String
+- country : String
++ Place(name : String, city : String, country : String)
++ Place(city : String, country : String)
++ getName() : String
++ getCity() : String
++ getCountry() : String
++ toString() : String
+}
+class Lab06ex2{
++ {static} main(args : String[]) : void
+}
+class MovieBuilder{
+- title : String
+- year : int
+- director : Person
+- writer : Person
+- series : String
+- cast : List<Person>
+- locations : List<Place>
+- languages : List<String>
+- genres : List<String>
+- isTelevision : boolean
+- isNetflix : boolean
+- isIndependent : boolean
++ MovieBuilder()
++ reset() : MovieBuilder
++ setTitle(title : String) : MovieBuilder
++ setYear(year : int) : MovieBuilder
++ setDirector(director : Person) : MovieBuilder
++ setDirector(directorFirstName : String, directorLastName : String) : MovieBuilder
++ setWriter(writer : Person) : MovieBuilder
++ setWriter(writerFirstName : String, writerLastName : String) : MovieBuilder
++ setSeries(series : String) : MovieBuilder
++ addCastMember(castMember : Person) : MovieBuilder
++ addCastMember(castMemberFirstName : String, castMemberLastName : String) : MovieBuilder
++ addLocation(location : Place) : MovieBuilder
++ addLocation(locationName : String, locationCity : String, locationCountry : String) : MovieBuilder
++ addLocation(locationCity : String, locationCountry : String) : MovieBuilder
++ addLanguage(language : String) : MovieBuilder
++ addGenre(genre : String) : MovieBuilder
++ setTelevistion() : MovieBuilder
++ setNetflix() : MovieBuilder
++ setIndependent() : MovieBuilder
++ build() : Movie
+}
+Movie--> "director" Person
+Movie--> "writer" Person
+Movie--> "cast" Person
+Movie--> "locations" Place
+MovieBuilder--> "director" Person
+MovieBuilder--> "writer" Person
+MovieBuilder--> "cast" Person
+MovieBuilder--> "locations" Place
+Lab06ex2-->MovieBuilder
+Lab06ex2..>Movie
+
+@enduml

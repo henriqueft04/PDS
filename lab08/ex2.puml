@@ -1,0 +1,51 @@
+@startuml
+skinparam classAttributeIconSize 0
+class VowelFilter{
++ VowelFilter(reader : TextReaderInterface)
++ next() : String
+}
+VowelFilter --|> Filter
+class Filter{
+- reader : TextReaderInterface
++ Filter(reader : TextReaderInterface)
++ hasNext() : boolean
++ next() : String
+}
+Filter ..|> TextReaderInterface
+class NormalizationFilter{
++ NormalizationFilter(reader : TextReaderInterface)
++ next() : String
+}
+NormalizationFilter --|> Filter
+class CapitalizationFilter{
++ CapitalizationFilter(reader : TextReaderInterface)
+- isWordStartOrTermination(line : String, i : int) : boolean
++ next() : String
+}
+CapitalizationFilter --|> Filter
+class Main{
++ {static} main(args : String[]) : void
+}
+class TermFilter{
+- terms : Queue<String>
++ TermFilter(reader : TextReaderInterface)
++ hasNext() : boolean
++ next() : String
+}
+TermFilter --|> Filter
+class TextReader{
+sc : Scanner
++ TextReader(filename : String)
++ setFile(filename : String) : void
++ close() : void
++ hasNext() : boolean
++ next() : String
+}
+TextReader ..|> TextReaderInterface
+Filter--"- reader" TextReaderInterface
+interface TextReaderInterface{
++ hasNext() : boolean
++ next() : String
+}
+Main --> TextReaderInterface
+@enduml

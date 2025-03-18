@@ -1,0 +1,81 @@
+@startuml
+skinparam classAttributeIconSize 0
+class TeamMember{
+- teamName : String
++ TeamMember(employee : EmployeeInterface, teamName : String)
++ work() : void
++ coloborate() : void
++ toString() : String
+}
+TeamMember --|> EmployeeDecorator
+class Employee{
++ Employee(name : String, number : int)
+}
+Employee --|> EmployeeAbstract
+class Main{
++ {static} main(args : String[]) : void
+}
+class TeamLeader{
+- teamName : String
++ TeamLeader(employee : EmployeeInterface, teamName : String)
++ work() : void
++ plan() : void
++ toString() : String
+}
+TeamLeader --|> EmployeeDecorator
+class Manager{
+- department : String
++ Manager(employee : EmployeeInterface, department : String)
++ work() : void
++ manage() : void
++ toString() : String
+}
+Manager --|> EmployeeDecorator
+class EmployeeDecorator{
+- employee : EmployeeInterface
++ EmployeeDecorator(employee : EmployeeInterface)
++ work() : void
++ start(date : Date) : void
++ terminate(date : Date) : void
++ getName() : String
++ getNumber() : int
++ toString() : String
++ setEmployee(employee : EmployeeInterface) : void
++ addRole(role : String) : void
++ removeRole(role : String) : void
++ getRoles() : List<String>
++ getEmployee() : EmployeeInterface
+}
+EmployeeDecorator ..|> EmployeeInterface
+class EmployeeAbstract{
+- name : String
+- number : int
+- starDate : Date
+- termDate : Date
+- roles : List<String>
++ EmployeeAbstract(name : String, number : int)
++ work() : void
++ start(date : Date) : void
++ terminate(date : Date) : void
++ getName() : String
++ getNumber() : int
++ addRole(role : String) : void
++ removeRole(role : String) : void
++ getRoles() : List<String>
++ toString() : String
+}
+EmployeeAbstract ..|> EmployeeInterface
+EmployeeDecorator--"- employee" EmployeeInterface
+interface EmployeeInterface{
++ work() : void
++ start(date : Date) : void
++ terminate(date : Date) : void
++ getName() : String
++ getNumber() : int
++ toString() : String
++ addRole(role : String) : void
++ removeRole(role : String) : void
++ getRoles() : List<String>
+}
+Main --> EmployeeInterface
+@enduml

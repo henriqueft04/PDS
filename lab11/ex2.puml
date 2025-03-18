@@ -1,0 +1,25 @@
+@startuml
+skinparam classAttributeIconSize 0
+class NullDemo{
++ {static} main(args : String[]) : void
+}
+class NullEmployee{
++ getName() : String
+}
+NullEmployee --|> Employee
+class EmployeeFactory{
++ {static} names : String[]
++ {static} getEmployee(name : String) : Employee
+}
+class Employee{
+# name : String
++ {abstract} getName() : String
+}
+class Programmer{
++ Programmer(name : String)
++ getName() : String
+}
+Programmer --|> Employee
+NullDemo --> EmployeeFactory
+NullDemo --> Employee
+@enduml

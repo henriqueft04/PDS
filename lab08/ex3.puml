@@ -1,0 +1,44 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Doce{
++ Doce(nome : String, peso : double)
++ toString() : String
+}
+Doce --|> Produto
+class Bebida{
++ Bebida(nome : String, peso : double)
++ toString() : String
+}
+Bebida --|> Produto
+class Conserva{
++ Conserva(nome : String, peso : double)
++ toString() : String
+}
+Conserva --|> Produto
+class Produto{
+- nome : String
+- peso : double
+{static} identation : int
++ Produto(nome : String, peso : double)
++ getNome() : String
++ getPeso() : double
++ getIdentation() : int
+# {static} addIdentation() : void
+# {static} removeIdentation() : void
++ toString() : String
++ draw() : void
+}
+class Caixa{
+- produtos : List<Produto>
++ Caixa(nome : String, peso : double)
++ getProdutos() : List<Produto>
++ add(produto : Produto) : void
++ pesoTotal() : double
++ toString() : String
+}
+Caixa --|> Produto
+class Cabazes{
++ {static} main(args : String[]) : void
+}
+Cabazes --> Produto
+@enduml

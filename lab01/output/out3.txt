@@ -1,0 +1,43 @@
+factory              7          18,21   Left
+builder              7          4,17    Left
+pool                 4          13,14   Left
+prototype            9          9,13    UpLeft
+singleton            9          15,18   UpLeft
+adapter              7          12,10   UpRight
+bridge               6          2,15    Down
+composite            9          14,10   UpLeft
+decorator            9          14,12   DownRight
+facade               6          12,9    Up 
+flyweight            9          18,3    Up 
+proxy                5          16,5    Down
+command              7          6,18    Down
+interpreter          11         7,2     DownRight
+iterator             8          5,19    Down
+mediator             8          22,14   UpLeft
+memento              7          19,2    Up 
+observer             8          1,22    DownLeft
+state                5          8,5     Up 
+strategy             8          13,6    DownRight
+visitor              7          13,21   Up 
+. . . . E . . . . . . . . . . . . . . . . O 
+. . . . . P . . . . . . . . B . . . . . B . 
+. . . . . . Y . . . . . . . R . . . . S . . 
+. . . . E . . T . . R E D L I U B . E . . . 
+. . . . T . . . O . . . . . D . . R I . . . 
+. E . . A . . . . T . . . . G R V C T . . . 
+. I T . T . . . E N O . . . E E . O E . R . 
+. . N I S . . . D . O R . T R . . M R . O . 
+. . . T S . . . A . . T P . . . . M A . T . 
+. . T . E O . . C . . A E . . . . A T . I . 
+. . H . . R P . A . D . . L . . . N O . S . 
+. . G . . . P M F A . . . . G . . D R . I . 
+. O I . . S . R O . L O O P . N . . . . V . 
+. T E . . . T . E C . D . . . . I . . . . . 
+. N W . . . R R . T . . E . . . . S . . . . 
+. E Y . P . . O A . E . . C . . . . . . . . 
+. M L . R . . . T T . R . . O . . . . . . . 
+. E F . O . . . . A E . . . Y R O T C A F . 
+. M . . X . . . . . I G . . . . A . . . . . 
+. . . . Y . . . . . . D Y . . . . T . . . . 
+. . . . . . . . . . . . E . . . . . O . . . 
+. . . . . . . . . . . . . M . . . . . R . . 

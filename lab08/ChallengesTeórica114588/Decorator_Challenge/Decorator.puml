@@ -1,0 +1,45 @@
+@startuml Decorator
+interface CoffeeInterface {
+    +drink(): void
+    +decorate(decoration: String): void
+}
+
+class Coffee implements CoffeeInterface {
+    -decorations: String
+    +Coffee()
+    +decorate(decoration: String): void
+    +drink(): void
+}
+
+class CoffeeDecorator implements CoffeeInterface {
+    #coffee: Coffee
+    +CoffeeDecorator(coffee: Coffee)
+    +drink(): void
+    +decorate(decoration: String): void
+}
+
+class CoffeeMilkDecorator extends CoffeeDecorator {
+    +CoffeeMilkDecorator(coffee: Coffee)
+    +drink(): void
+    +decorate(): void
+}
+
+class CoffeeSugarDecorator extends CoffeeDecorator {
+    +CoffeeSugarDecorator(coffee: Coffee)
+    +drink(): void
+    +decorate(): void
+}
+
+class CoffeeCaramelDecorator extends CoffeeDecorator {
+    +CoffeeCaramelDecorator(coffee: Coffee)
+    +drink(): void
+    +decorate(): void
+}
+
+CoffeeInterface <|.. Coffee
+CoffeeInterface <|.. CoffeeDecorator
+CoffeeDecorator o-- Coffee
+CoffeeDecorator <|-- CoffeeMilkDecorator
+CoffeeDecorator <|-- CoffeeSugarDecorator
+CoffeeDecorator <|-- CoffeeCaramelDecorator
+@enduml

@@ -1,0 +1,28 @@
+# Template method jdk applications
+
+
+java.io.InputStream
+Na classe InputStream podemos encontrar o método read().
+Este método é responsável por ler bytes de um arquivo. Ele,
+através do padrão Template Method, delega a leitura dos
+bytes para o método read() de cada uma das subclasses de
+InputStream.
+
+
+java.io.Writer
+A classe Writer contém o método write().
+À semelhança do método read() da classe InputStream,
+o método write() da classe Writer utiliza o padrão Template
+Method para delegar a escrita dos bytes para o método write()
+de cada uma das subclasses de Writer.
+
+
+java.util.AbstractMap
+Observando a classe AbstractMap, chegámos ao método equals().
+Este método é responsável por comparar dois objetos do tipo.
+Ele utiliza o padrão Template Method para delegar a comparação
+dos valores dos objetos para o método equals() de cada um dos
+objetos nele contidos.
+
+
+

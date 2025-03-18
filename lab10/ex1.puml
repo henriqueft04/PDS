@@ -1,0 +1,41 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Main{
++ {static} main(args : String[]) : void
+}
+class VectorGeneric{
+- vec : T[]
+- nElem : int
+- {static} ALLOC : int
+- dimVec : int
++ VectorGeneric()
++ Iterator() : Iterator<T>
++ ListIterator() : ListIterator<T>
++ ListIterator(i : int) : ListIterator<T>
++ addElem(elem : T) : boolean
+- ensureSpace() : void
++ removeElem(elem : T) : boolean
++ totalElem() : int
++ getElem(i : int) : T
+}
+class VectorGenerator{
+- vec : VectorGeneric<T>
+- i : int
++ VectorGenerator(vec : VectorGeneric<T>)
++ VectorGenerator(vec : VectorGeneric<T>, i : int)
++ hasNext() : boolean
++ next() : T
++ remove() : void
++ set(e : T) : void
++ previousIndex() : int
++ nextIndex() : int
++ hasPrevious() : boolean
++ previous() : T
++ add(e : T) : void
+}
+VectorGenerator ..|> ListIterator
+ListIterator ..|> Iterator
+VectorGenerator --> VectorGeneric
+Main --> Iterator
+Main --> ListIterator
+@enduml

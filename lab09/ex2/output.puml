@@ -1,0 +1,58 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Main{
++ {static} main(args : String[]) : void
+}
+class SocialSecurity{
++ {static} contributors : Set<Person>
++ {static} regist(p : Person) : boolean
++ {static} _toString() : String
+}
+class Parking{
++ {static} allowedPeople : Set<Person>
++ {static} allow(p : Person) : boolean
++ {static} _toString() : String
+}
+class Insurance{
++ {static} insuredPeople : Set<Person>
++ {static} regist(p : Person) : boolean
++ {static} _toString() : String
+}
+class Company{
+- name : String
+- workers : Set<Person>
+- workerCards : Set<Card>
++ Company(companyName : String)
++ getName() : String
++ addWorker(p : Person) : boolean
++ addWorkerCard(c : Card) : boolean
++ admitEmployee(p : Person) : void
++ toString() : String
+}
+class Person{
+- name : String
+- sex : Sex
+- wage : double
++ Person(name : String, sex : Sex, wage : double)
++ getName() : String
++ getSex() : Sex
++ getWage() : double
++ setWage(_wage : double) : void
+}
+class Card{
+p : Person
++ Card(p : Person)
+}
+Person--"- sex" Sex
+Card--"p" Person
+enum Sex{
+M
+F
+}
+Company--"workers" Person
+Company--"workerCards" Card
+Company-->SocialSecurity
+Company-->Parking
+Company-->Insurance
+Main-->Company
+@enduml

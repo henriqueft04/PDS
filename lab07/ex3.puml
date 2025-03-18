@@ -1,0 +1,87 @@
+@startuml
+skinparam classAttributeIconSize 0
+class BasicPrinterTest{
+- {static} pause(millis : long) : void
++ {static} main(args : String[]) : void
+}
+class PrinterTest{
+- {static} pause(millis : long) : void
++ {static} main(args : String[]) : void
+}
+class Document{
+- filename : String
++ Document(filename : String)
++ getFilename() : String
++ getResume() : String
++ readDocument() : String[]
+}
+class BasicPrinter{
+- inkAmount : int
+- paperAmount : int
++ BasicPrinter()
++ print(content : String[]) : boolean
++ hasInk() : boolean
++ hasPaper() : boolean
++ addInk() : void
++ addPaper() : void
++ refill() : void
+}
+class PrinterService{
+- printQueue : LinkedBlockingQueue<PrintJob>
+- pool : ExecutorService
++ PrinterService()
++ run() : void
++ newPrintJob(doc : Document) : int
++ cancelJob(job : int) : boolean
+shutdownAndAwaitTermination() : void
++ getPrintQueue() : LinkedBlockingQueue<PrintJob>
+}
+PrinterService ..|> Runnable
+class BasicPrinterAdaptor{
+- basicPrinter : BasicPrinter
+- docs : List<Document>
+- jobs : List<PrintJob>
++ BasicPrinterAdaptor(basicPrinter : BasicPrinter)
++ print(doc : Document) : int
++ showQueuedJobs() : void
++ cancelJob(jobId : int) : boolean
++ cancelAll() : void
++ print(docs : List<Document>) : List<Integer>
+}
+BasicPrinterAdaptor ..|> AdvancedPrinterInterface
+class PrintJob{
+{static} nextId : int
+- doc : Document
+- id : int
++ PrintJob(doc : Document)
++ getDocument() : Document
++ getId() : int
++ run() : void
+}
+PrintJob ..|> Runnable
+class AdvancedPrinter{
+- spool : PrinterService
++ AdvancedPrinter()
++ print(doc : Document) : int
++ print(docs : List<Document>) : List<Integer>
++ showQueuedJobs() : void
++ cancelJob(jobId : int) : boolean
++ cancelAll() : void
+}
+AdvancedPrinter ..|> AdvancedPrinterInterface
+BasicPrinterAdaptor--"- basicPrinter" BasicPrinter
+PrintJob--"- doc" Document
+AdvancedPrinter--"- spool" PrinterService
+interface AdvancedPrinterInterface{
++ print(doc : Document) : int
++ print(docs : List<Document>) : List<Integer>
++ showQueuedJobs() : void
++ cancelJob(jobId : int) : boolean
++ cancelAll() : void
+}
+BasicPrinterAdaptor -- Document
+BasicPrinterAdaptor -- PrintJob
+BasicPrinterTest --> BasicPrinterAdaptor
+PrinterTest --> AdvancedPrinter
+
+@enduml

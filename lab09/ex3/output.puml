@@ -1,0 +1,84 @@
+@startuml
+skinparam classAttributeIconSize 0
+class BStar{
+# {static} typeInstance : BStar
++ BStar()
++ {static} getStar() : BStar
+}
+BStar --|> StarType
+class Sky{
+- stars : List<Star>
++ placeStar(star : Star) : void
++ paint(graphics : Graphics) : void
+}
+Sky --|> JFrame
+class FStar{
+# {static} typeInstance : FStar
++ FStar()
++ {static} getStar() : FStar
+}
+FStar --|> StarType
+class StarType{
+- size : int
+- color : Color
+# description : String
+# physicalProperties : Float[]
++ StarType(size : int, color : Color)
++ getSize() : int
++ getColor() : Color
+}
+class KStar{
+# {static} typeInstance : KStar
++ KStar()
++ {static} getStar() : KStar
+}
+KStar --|> StarType
+class MStar{
+# {static} typeInstance : MStar
++ MStar()
++ {static} getStar() : MStar
+}
+MStar --|> StarType
+class GStar{
+# {static} typeInstance : GStar
++ GStar()
++ {static} getStar() : GStar
+}
+GStar --|> StarType
+class Star{
+- type : StarType
+- x : int
+- y : int
++ Star(type : StarType, x : int, y : int)
++ draw(g : Graphics) : void
+}
+class OStar{
+# {static} typeInstance : OStar
++ OStar()
++ {static} getStar() : OStar
+}
+OStar --|> StarType
+class AStar{
+# {static} typeInstance : AStar
++ AStar()
++ {static} getStar() : AStar
+}
+AStar --|> StarType
+class Demo{
+{static} CANVAS_SIZE : int
+{static} STARS_TO_DRAW : int
++ {static} main(args : String[]) : void
+- {static} createStar(type : char) : Star
+- {static} random(min : int, max : int) : int
+}
+BStar--"# {static} typeInstance" BStar
+FStar--"# {static} typeInstance" FStar
+KStar--"# {static} typeInstance" KStar
+MStar--"# {static} typeInstance" MStar
+GStar--"# {static} typeInstance" GStar
+Star--"- type" StarType
+OStar--"# {static} typeInstance" OStar
+AStar--"# {static} typeInstance" AStar
+Sky--Star
+Demo->Sky
+@enduml

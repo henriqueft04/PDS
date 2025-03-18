@@ -1,0 +1,60 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Smartphone{
+- memory : int
+- price : double
+- description : String
++ Smartphone(memory : int, price : double, description : String)
++ getMemory() : int
++ getPrice() : double
++ getDescription() : String
++ toString() : String
+}
+class SelectionSortAlgorithm{
++ SelectionSortAlgorithm(sortingFilter : SortingFilter, sortingOrder : SortingOrder, smartphones : List<Smartphone>)
++ {static} selectionSort(list : List<T>, comparator : Comparator<? super T>) : void
++ sort() : void
+}
+SelectionSortAlgorithm --|> SortingAlgorithm
+class InsertionSort{
++ InsertionSort(sortingFilter : SortingFilter, sortingOrder : SortingOrder, smartphones : List<Smartphone>)
++ {static} insertionSort(list : List<T>, comparator : Comparator<? super T>) : void
++ sort() : void
+}
+InsertionSort --|> SortingAlgorithm
+class SortingAlgorithm{
+- sortingFilter : SortingFilter
+- sortingOrder : SortingOrder
+- smartphones : List<Smartphone>
+- algorithm : SortingAlgorithm
++ SortingAlgorithm(sortingFilter : SortingFilter, sortingOrder : SortingOrder, smartphones : List<Smartphone>)
++ setAlgorithm(algorithm : SortingAlgorithm) : void
++ getAlgorithm() : SortingAlgorithm
++ getSortingFilter() : SortingFilter
++ getSortingOrder() : SortingOrder
++ getSmartphones() : List<Smartphone>
++ {abstract} sort() : void
++ printSmartphones() : void
+}
+class Main{
++ {static} main(args : String[]) : void
+}
+class BubbleSort{
++ BubbleSort(sortingFilter : SortingFilter, sortingOrder : SortingOrder, smartphones : List<Smartphone>)
++ {static} bubbleSort(list : List<T>, comparator : Comparator<? super T>) : void
++ sort() : void
+}
+BubbleSort --|> SortingAlgorithm
+SortingAlgorithm--"- sortingFilter" SortingFilter
+SortingAlgorithm--"- sortingOrder" SortingOrder
+SortingAlgorithm--"- algorithm" SortingAlgorithm
+enum SortingFilter{
+RAM
+PRICE
+DESCRIPTION
+}
+enum SortingOrder{
+ASCENDING
+DESCENDING
+}
+@enduml

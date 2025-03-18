@@ -1,0 +1,40 @@
+@startuml
+skinparam classAttributeIconSize 0
+class DirectorySizeVisitor{
+- sizeStack : Stack<Long>
+- logs : Stack<String>
+- isroot : boolean
++ DirectorySizeVisitor()
+- newDirectory() : void
+- endDirectory() : Long
+- addSize(size : long) : void
++ visitFile(file : Path, attrs : BasicFileAttributes) : FileVisitResult
++ visitFileFailed(file : Path, exc : IOException) : FileVisitResult
++ postVisitDirectory(dir : Path, exc : IOException) : FileVisitResult
++ preVisitDirectory(dir : Path, attrs : BasicFileAttributes) : FileVisitResult
++ getTotalSize() : long
++ printLogs() : void
+}
+DirectorySizeVisitor --|> SimpleFileVisitor
+class DirectorySize{
+- totalSize : long
++ getTotalSize() : long
++ addSize(size : long) : void
+}
+class DirectorySizeCalculator{
++ {static} main(args : String[]) : void
+}
+class Entry {}
+class Directory{}
+class File{}
+Directory ..|> Entry
+File ..|> Entry
+Entry ..> DictorySizeVisitor
+DirectorySizeVisitor ..> File
+DirectorySizeVisitor ..> Directory
+
+DirectorySizeVisitor o-- DirectorySize
+
+DirectorySizeCalculator ..> DirectorySizeVisitor
+DirectorySizeCalculator ..> Entry
+@enduml

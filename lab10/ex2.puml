@@ -1,0 +1,63 @@
+@startuml
+skinparam classAttributeIconSize 0
+class BurgerChef{
++ BurgerChef()
+}
+BurgerChef --|> ChefMiddleware
+class ChefMiddleware{
+- suportedFoodType : FoodType
+- next : ChefMiddleware
++ ChefMiddleware(suportedFoodType : FoodType)
++ {static} link(first : ChefMiddleware, chain : ChefMiddleware) : ChefMiddleware
++ handleOrder(item : FoodItem) : void
+- cook(item : FoodItem) : void
++ toString() : String
+}
+class FoodItem{
+type : FoodType
+name : String
+timeToCook : int
++ FoodItem(type : FoodType, name : String, timeToCook : int)
++ getType() : FoodType
++ getName() : String
++ getTimeToCook() : int
++ toString() : String
+}
+class SushiChef{
++ SushiChef()
+}
+SushiChef --|> ChefMiddleware
+class Main{
++ {static} main(args : String[]) : void
+}
+class PastaChef{
++ PastaChef()
+}
+PastaChef --|> ChefMiddleware
+class PizzaChef{
++ PizzaChef()
+}
+PizzaChef --|> ChefMiddleware
+class ClientOrder{
+order : String
+item : FoodItem
++ ClientOrder(item : FoodItem)
+}
+class DessertChef{
++ DessertChef()
+}
+DessertChef --|> ChefMiddleware
+ChefMiddleware--"- suportedFoodType" FoodType
+ChefMiddleware--"- next" ChefMiddleware
+FoodItem--"type" FoodType
+ClientOrder--"item" FoodItem
+enum FoodType{
+PIZZA
+BURGER
+PASTA
+SUSHI
+DESSERT
+SALAD
+}
+Main --> ClientOrder
+@enduml

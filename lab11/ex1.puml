@@ -1,0 +1,84 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Stock{
++ beginLeilao(produto : Produto) : void
++ terminaLeilao(produto : Produto) : void
++ restock(produto : Produto) : void
++ sell(produto : Produto) : void
++ bid(produto : Produto, value : double) : void
+}
+Stock ..|> Estado
+class Venda{
++ beginLeilao(produto : Produto) : void
++ terminaLeilao(produto : Produto) : void
++ restock(produto : Produto) : void
++ sell(produto : Produto) : void
++ bid(produto : Produto, value : double) : void
+}
+Venda ..|> Estado
+class Leilao{
++ beginLeilao(produto : Produto) : void
++ bid(produto : Produto, value : double) : void
++ terminaLeilao(produto : Produto) : void
++ restock(produto : Produto) : void
++ sell(produto : Produto) : void
+}
+Leilao ..|> Estado
+class Produto{
+- codigo : int
+- descricao : String
+- preco_base : double
+- estado : Estado
+- observers : List<Observer>
+- bid : Boolean
++ Produto(codigo : int, descricao : String, preco_base : double)
++ getCodigo() : int
++ getDescricao() : String
++ getPrecoBase() : double
++ getEstado() : Estado
++ getBid() : Boolean
++ setEstado(estado : Estado) : void
++ addObserver(observer : Observer) : void
++ removeObserver(client : Cliente) : void
++ notifyObservers() : void
++ bid(value : double) : void
++ startLeilao() : void
+}
+class Cliente{
+- nome : String
++ Cliente(nome : String)
++ update(produto : Produto) : void
++ getNome() : String
++ setNome(nome : String) : void
++ licitar(produto : Produto, valor : double) : void
+}
+Cliente ..|> Observer
+class Main{
++ {static} main(args : String[]) : void
+}
+class Gestor{
+- nome : String
++ Gestor(nome : String)
++ update(produto : Produto) : void
++ getNome() : String
++ setNome(nome : String) : void
++ addObserver(produto : Produto) : void
+}
+Gestor ..|> Observer
+Produto--"- estado" Estado
+interface Observer{
++ update(produto : Produto) : void
+}
+interface Estado{
++ listaVendas : List<Produto>
++ beginLeilao(produto : Produto) : void
++ terminaLeilao(produto : Produto) : void
++ restock(produto : Produto) : void
++ sell(produto : Produto) : void
++ bid(produto : Produto, value : double) : void
+}
+Produto o--> Observer
+Main --> Produto
+Main --> Cliente
+Main --> Gestor
+@enduml

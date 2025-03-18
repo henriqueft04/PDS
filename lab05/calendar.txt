@@ -1,0 +1,3 @@
+Singleton pattern-> Get instance é o exemplo mais normal de uso de Singleton, isto garante apenas uma classe de 'Calendar' para cada combinação de fuso horário e localidade.
+Builder pattern-> Existe uma classe estática  que segue este padrão, facilitando configurar multiplos calendars com vários parametros.
+Prototype pattern-> o método clone() (proveniente da implementação da interface Clonable) mostra um uso do padrão Prototype, o que permite a criação de uma cópia de um objeto Calendar que já exista.

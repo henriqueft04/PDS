@@ -1,0 +1,32 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Main{
++ {static} main(args : String[]) : void
+}
+class ChatMediator{
+- colleagues : Map<Integer,Colleague>
++ ChatMediator()
++ addColleague(colleague : Colleague) : void
++ broadcast(senderId : int, message : String) : void
++ send_to(destination : int, senderId : int, message : String) : void
+}
+ChatMediator ..|> Mediator
+class Colleague{
+{static} idCount : int
+- id : int
+- mediator : Mediator
+Colleague(mediator : Mediator)
++ getId() : int
++ sendMessage() : void
++ sendMessage(to : int) : void
++ receiveMessage(from : int, message : String) : void
+}
+Colleague--"- mediator" Mediator
+interface Mediator{
++ broadcast(senderId : int, message : String) : void
++ send_to(destination : int, senderId : int, message : String) : void
++ addColleague(colleague : Colleague) : void
+}
+ChatMediator o--> Colleague
+Main --> Colleague
+@enduml

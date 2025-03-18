@@ -1,0 +1,107 @@
+@startuml
+skinparam classAttributeIconSize 0
+class ChocolateCakeBuilder{
+- cake : Cake
++ createCake() : void
++ setCakeShape(shape : Shape) : void
++ addCakeLayer() : void
++ addCreamLayer() : void
++ addTopLayer() : void
++ addTopping() : void
++ addMessage(m : String) : void
++ getCake() : Cake
+}
+ChocolateCakeBuilder ..|> CakeBuilder
+class Lab06ex1{
++ {static} main(args : String[]) : void
+}
+class Cake{
+- name : String
+- shape : Shape
+- cakeLayer : String
+- numCakeLayers : int
+- midLayerCream : Cream
+- topLayerCream : Cream
+- topping : Topping
+- message : String
++ Cake(name : String)
++ setShape(shape : Shape) : void
++ getNumCakeLayers() : int
++ addCakeLayer() : void
++ addCreamLayer(cream : Cream) : void
++ addTopLayer(cream : Cream) : void
++ getTopLayerCream() : Cream
++ addTopping(topping : Topping) : void
++ getTopping() : Topping
++ addMessage(m : String) : void
++ getMessage() : String
++ toString() : String
+}
+class YogurtCakeBuilder{
+- cake : Cake
++ setCakeShape(shape : Shape) : void
++ addCakeLayer() : void
++ addCreamLayer() : void
++ addTopLayer() : void
++ addTopping() : void
++ addMessage(m : String) : void
++ createCake() : void
++ getCake() : Cake
+}
+YogurtCakeBuilder ..|> CakeBuilder
+class SpongeCakeBuilder{
+- cake : Cake
++ setCakeShape(shape : Shape) : void
++ addCakeLayer() : void
++ addCreamLayer() : void
++ addTopLayer() : void
++ addTopping() : void
++ addMessage(m : String) : void
++ createCake() : void
++ getCake() : Cake
+}
+SpongeCakeBuilder ..|> CakeBuilder
+class CakeMaster{
+- builder : CakeBuilder
+- msg : String
++ setCakeBuilder(builder : CakeBuilder) : void
++ createCake(msg : String) : void
++ createCake(shape : Shape, numCakeLayers : int, msg : String) : void
++ createCake(numCakeLayers : int, msg : String) : void
++ getCake() : Cake
+}
+ChocolateCakeBuilder--"- cake" Cake
+Cake--"- shape" Shape
+Cake--"- midLayerCream" Cream
+Cake--"- topLayerCream" Cream
+Cake--"- topping" Topping
+YogurtCakeBuilder--"- cake" Cake
+SpongeCakeBuilder--"- cake" Cake
+CakeMaster--"- builder" CakeBuilder
+Lab06ex1 --> CakeMaster
+Lab06ex1 ..> Cake
+interface CakeBuilder{
++ setCakeShape(shape : Shape) : void
++ addCakeLayer() : void
++ addCreamLayer() : void
++ addTopLayer() : void
++ addTopping() : void
++ addMessage(m : String) : void
++ createCake() : void
++ getCake() : Cake
+}
+enum Topping{
+Fruit
+Chocolate
+}
+enum Cream{
+Whipped_Cream
+Red_Berries
+Vanilla
+}
+enum Shape{
+Circle
+Square
+Rectangle
+}
+@enduml
